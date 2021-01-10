@@ -27,9 +27,15 @@ relationship between businesses and changes in neighborhoods is studied. This wo
   
   ## Data Collection
   Yelp dataset (business, users, reviews, check-ins) is used as the main source of data for analysis. From the dataset, business.json contains information such as business name, ID, latitude, longitude, state, etc. In order to demonstrate our project analysis, Phoenix metro area is selected for detailed analysis due to its abundancy in business counts and types. (latitude >= 33.2053083226 & latitude <= 33.8489465375, longitude >= -112.5421815 & longitude <= -111.6003941)
+  
+  ![1](images/1.PNG)
+ 
+  ![2](images/2.PNG)
 
   Table 1 presents the most popular categories within the Phoenix area and these categories will work as a “suggestion list” in the final UI presentation. This work is done
 by funneling data using OpenRefine.
+
+  ![3](images/3.PNG)
 
   To rank a location in a category, we will couple the two sets of data for analysis. Lin et al [7] present a system recommending geographical zones to host business in. By
 inputting business category and description, the system produces a ranked list of zones, represented as a geographical heatmap. A ranking system could be useful in identifying
@@ -40,6 +46,8 @@ areas with the most potential for improvement. This system is focused specifical
 because it detailed multiple approaches to sentiment analysis. The paper falls short in how to visualize this information and present it to an aspiring business owner. The team decided to utilize a sentiment analysis model, VADER, based on the
 research paper “VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text” [14]. This paper is useful to the project, because it compared VADER to multiple sentiment analysis models and techniques finding that, in most
 cases, VADER resulted in the best performance [14]. We plan on improving upon this work by adding in the change in sentiment over time to provide end users with a trend analysis.
+
+![4](images/4.PNG)
     
  Another paper explored creating visualizations for sentiment analysis including visualizing information about the person who produced the text such as age, attitude,
 etc [16]. This paper is useful for this project, because it provides interesting visualizations for specific characteristics of a person. This project will expand upon this
@@ -51,8 +59,9 @@ visualization to help end users gather insights through review data.
   ##  Topic Modeling
   In an effort to further provide data driven insights that support identification of business opportunity, we decided to apply topic modeling techniques to the data that
 has been processed for sentiment. We are currently leveraging Latent Dirichlet Allocation, which enables the identification of abstract topics that appear across a body
-of documents. We are presenting the topics discovered by LDA, in both the positive and negative review bodies, to the end user. This enables the end user to potentially identify
-common complaints and exploit those in future business endeavors. [17]
+of documents. We are presenting the topics discovered by LDA, in both the positive and negative review bodies, to the end user. This enables the end user to potentially identify common complaints and exploit those in future business endeavors. [17]
+
+ ![5](images/5.PNG)
 
   ##  Clustering
   We have used KMeans clustering to group similar businesses together. It partitions a set of observations into the specified number of clusters. In order to identify
@@ -62,12 +71,15 @@ the most popular businesses in a location, we make use the following observation
       * Average star rating
       
   We filter the data based on zip code and category, then calculate the optimal number of clusters for that dataset using the elbow method [19].
+  
+  ![6](images/6.PNG)
       
   The chart above represents the elbow criteria for postal code 85085 (in Phoenix, AZ) and category ‘Restaurants’. The plotted line is shaped like an arm and the elbow on
-this arm is the optimal value of k - the optimal value of ‘k’ here is found to be 4. Ferreira et al [18] state that KMeans does not give an optimal set of clusters. We overcome this
-by calculating a ‘k’ value separately for each data (based on category and postal code). Using all the above information we perform KMeans clustering and retrieve the clusters.
+this arm is the optimal value of k - the optimal value of ‘k’ here is found to be 4. Ferreira et al [18] state that KMeans does not give an optimal set of clusters. We overcome this by calculating a ‘k’ value separately for each data (based on category and postal code). Using all the above information we perform KMeans clustering and retrieve the clusters.
 We identify two clusters with the maximum values of total number of positive reviews, review count and average star rating. Using the business data from the selected two
 clusters, we will rank the popular business based on the above metrics.
+
+  ![7](images/7.PNG)
 
   ##  Visualization
   The default view will showcase a Phoenix map for top 5 businesses with the selected business category. A resulting map of the area within specified radius will show
@@ -85,13 +97,16 @@ businesses opened in the corresponding area. By experimenting with restaurants i
 analysis are combined and presented in a compact visualization as shown in Figure 8. From the topic modeling section, the customer will be able to see the positive or
 negative topics that are popular from the business reviews. It is important to know what the customers’ impression on the business and what can be improved in future.
 The sentimental analysis section presents the overall positive review ratio over the years. This information indicates the business performance trend over time. This is
-crucial for a potential business investor to know if there can be potentials to open new business in the certain category.
+crucial for a potential business investor to know if there can be potentials to open new business in the certain category. By utilizing clustering analysis, a total number of 4 tiers will be grouped among the businesses shown in the map, as well as compared by ratings. This can help us understand the high-level picture of the businesses in the selected area.
 
-  By utilizing clustering analysis, a total number of 4 tiers will be grouped among the businesses shown in the map, as well as compared by ratings. This can help us
-understand the high-level picture of the businesses in the selected area.
+![8](images/8.PNG)
+
+![9](images/9.PNG)
 
 # Data Source
   The application is dependent on the Yelp JSON dataset. Statistics on the static dataset can be found in the table below.
+  
+![10](images/10.PNG)
   
 # Cost
   Tableau Creator will be used to create and host the data visualizations. This cost is $70 per month for two months at a total of $140.00. In addition, Five developers will
