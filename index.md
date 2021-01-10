@@ -25,25 +25,23 @@ relationship between businesses and changes in neighborhoods is studied. This wo
 # Methodology
   The popularity of a business category among local consumers plays a key role in recommending an ideal business location. Our goal is to find locations that have the most potential to attract customers.
   
-  ##  Data Collection
-      Yelp dataset (business, users, reviews, check-ins) is used as the main source of data for analysis. From the dataset, business.json contains information such as business name, ID,
-latitude, longitude, state, etc. In order to demonstrate our project analysis, Phoenix metro area is selected for detailed analysis due to its abundancy in business counts and
-types. (latitude >= 33.2053083226 & latitude <= 33.8489465375, longitude >= -112.5421815 & longitude <= -111.6003941)
+  ## Data Collection
+  Yelp dataset (business, users, reviews, check-ins) is used as the main source of data for analysis. From the dataset, business.json contains information such as business name, ID, latitude, longitude, state, etc. In order to demonstrate our project analysis, Phoenix metro area is selected for detailed analysis due to its abundancy in business counts and types. (latitude >= 33.2053083226 & latitude <= 33.8489465375, longitude >= -112.5421815 & longitude <= -111.6003941)
 
-      Table 1 presents the most popular categories within the Phoenix area and these categories will work as a “suggestion list” in the final UI presentation. This work is done
+  Table 1 presents the most popular categories within the Phoenix area and these categories will work as a “suggestion list” in the final UI presentation. This work is done
 by funneling data using OpenRefine.
 
-      To rank a location in a category, we will couple the two sets of data for analysis. Lin et al [7] present a system recommending geographical zones to host business in. By
+  To rank a location in a category, we will couple the two sets of data for analysis. Lin et al [7] present a system recommending geographical zones to host business in. By
 inputting business category and description, the system produces a ranked list of zones, represented as a geographical heatmap. A ranking system could be useful in identifying
 areas with the most potential for improvement. This system is focused specifically on Singapore. As an improvement, we will expand to any geographical location.
 
   ##  Sentiment Analysis
-      This project explores the use of sentiment analysis to develop business insights and support decision making. One paper outlined the process of conducting product opinion mining through sentiment analysis [13]. This paper was helpful for this project,
+  This project explores the use of sentiment analysis to develop business insights and support decision making. One paper outlined the process of conducting product opinion mining through sentiment analysis [13]. This paper was helpful for this project,
 because it detailed multiple approaches to sentiment analysis. The paper falls short in how to visualize this information and present it to an aspiring business owner. The team decided to utilize a sentiment analysis model, VADER, based on the
 research paper “VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text” [14]. This paper is useful to the project, because it compared VADER to multiple sentiment analysis models and techniques finding that, in most
 cases, VADER resulted in the best performance [14]. We plan on improving upon this work by adding in the change in sentiment over time to provide end users with a trend analysis.
     
-      Another paper explored creating visualizations for sentiment analysis including visualizing information about the person who produced the text such as age, attitude,
+ Another paper explored creating visualizations for sentiment analysis including visualizing information about the person who produced the text such as age, attitude,
 etc [16]. This paper is useful for this project, because it provides interesting visualizations for specific characteristics of a person. This project will expand upon this
 by applying the concept to words that appear most in negative reviews to provide insights to the end user. The paper, “Towards Extracting Coherent User Concerns and 
 Their Hierarchical Organization from User Reviews”, provides a method for “mining user reviews to discover what the user likes and dislikes” [15]. This paper is useful, because
@@ -51,35 +49,35 @@ it provides a mechanism for topic modeling, but falls short in providing a visua
 visualization to help end users gather insights through review data. 
 
   ##  Topic Modeling
-      In an effort to further provide data driven insights that support identification of business opportunity, we decided to apply topic modeling techniques to the data that
+  In an effort to further provide data driven insights that support identification of business opportunity, we decided to apply topic modeling techniques to the data that
 has been processed for sentiment. We are currently leveraging Latent Dirichlet Allocation, which enables the identification of abstract topics that appear across a body
 of documents. We are presenting the topics discovered by LDA, in both the positive and negative review bodies, to the end user. This enables the end user to potentially identify
 common complaints and exploit those in future business endeavors. [17]
 
   ##  Clustering
-      We have used KMeans clustering to group similar businesses together. It partitions a set of observations into the specified number of clusters. In order to identify
+  We have used KMeans clustering to group similar businesses together. It partitions a set of observations into the specified number of clusters. In order to identify
 the most popular businesses in a location, we make use the following observations with respect to a business:
       * Total number of positive reviews
       * Total number of reviews
       * Average star rating
       
-      We filter the data based on zip code and category, then calculate the optimal number of clusters for that dataset using the elbow method [19].
+  We filter the data based on zip code and category, then calculate the optimal number of clusters for that dataset using the elbow method [19].
       
-      The chart above represents the elbow criteria for postal code 85085 (in Phoenix, AZ) and category ‘Restaurants’. The plotted line is shaped like an arm and the elbow on
+  The chart above represents the elbow criteria for postal code 85085 (in Phoenix, AZ) and category ‘Restaurants’. The plotted line is shaped like an arm and the elbow on
 this arm is the optimal value of k - the optimal value of ‘k’ here is found to be 4. Ferreira et al [18] state that KMeans does not give an optimal set of clusters. We overcome this
 by calculating a ‘k’ value separately for each data (based on category and postal code). Using all the above information we perform KMeans clustering and retrieve the clusters.
 We identify two clusters with the maximum values of total number of positive reviews, review count and average star rating. Using the business data from the selected two
 clusters, we will rank the popular business based on the above metrics.
 
   ##  Visualization
-      The default view will showcase a Phoenix map for top 5 businesses with the selected business category. A resulting map of the area within specified radius will show
+  The default view will showcase a Phoenix map for top 5 businesses with the selected business category. A resulting map of the area within specified radius will show
 the number of popular business in the specified category, running in the area ordered by popularity. Wang et al [3] and Xuan et al [4] focused on geographic location data and
 visualization can be leverage by our project. We intend to expand the usage of radius setting and geographic visualization to assist our project.
 
   ##  Innovation
-      * Combination of sentiment analysis and topic modeling helps gain insights into consumer preferences without the need for extensive research.
-      * Providing the ability to visualize the competitive landscape at the zip code level makes it easy to identify undeserved areas and communities.
-      * Clustering analysis based off of star rating and positive reviews helps to validate the level of competition in a market.
+   * Combination of sentiment analysis and topic modeling helps gain insights into consumer preferences without the need for extensive research.
+   * Providing the ability to visualize the competitive landscape at the zip code level makes it easy to identify undeserved areas and communities.
+   * Clustering analysis based off of star rating and positive reviews helps to validate the level of competition in a market.
   
 # Results
   As presented by Figure 7, the UI has been designed using D3. City, Category and Zip Code are the three areas that can be input in the boxes to investigate the
